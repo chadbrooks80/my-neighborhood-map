@@ -12,7 +12,7 @@ function initMap() {
     largeInfoWindow = new google.maps.InfoWindow();
 
     //create new markers and place into observable array
-    for(var i=0; i < data.length; i++) {
+    for (var i=0; i < data.length; i++) {
 
         var marker = new google.maps.Marker({
             map: map,
@@ -22,7 +22,7 @@ function initMap() {
         });
         //set marker to the lat lng and add marker to vm.
         marker.setPosition(data[i].location);
-        vm.markers.push(marker)
+        vm.markers.push(marker);
         vm.markerData.push(
             {
                 title: data[i].title,
@@ -32,7 +32,7 @@ function initMap() {
 
         //upon click, will display the infoWindow
         marker.addListener('click', function() {
-            showInfoWindow(this, largeInfoWindow)
+            showInfoWindow(this, largeInfoWindow);
         });
     }
 }
@@ -51,16 +51,16 @@ var vm = {
     //this is used when user clicks on one of the listings to show info window
     displayInfoWindow: function() {
         //first finds the marker from the marker data.
-        var marker = findMarker(this.id)
-        showInfoWindow(marker, largeInfoWindow)
+        var marker = findMarker(this.id);
+        showInfoWindow(marker, largeInfoWindow);
     },
     //this function is used for someone clicking on the expand or collaps button for
     //the side menu
     sidebarToggle: function() {
         if (this.maxSideBar()) {
-            this.maxSideBar(false)
+            this.maxSideBar(false);
         } else {
-            this.maxSideBar(true)
+            this.maxSideBar(true);
         }
     }
 }
@@ -68,9 +68,9 @@ var vm = {
 //closed javascript function used to filter results.
 vm.filterResults =  function(data) {
     return ko.computed(function() {
-        var id = data.id
-        var title = data.title.toLowerCase()
-        var filter = vm.filter().toLowerCase()
+        var id = data.id;
+        var title = data.title.toLowerCase();
+        var filter = vm.filter().toLowerCase();
         var marker = findMarker(data.id);
 
         //when the map is still loading it may not find the marker right away
@@ -85,12 +85,12 @@ vm.filterResults =  function(data) {
         }
         // -1 means no search found
         if (title.search(filter) != -1) {
-            marker.setMap(map)
+            marker.setMap(map);
             return true;
         }
 
         //else it sets marker on map to null.
-        marker.setMap(null)
+        marker.setMap(null);
         return false;
     }, this);
 };
@@ -102,7 +102,7 @@ function showInfoWindow(marker, infoWindow) {
     //FOURSQUARE DETAILS
 var clientId = 'UVH2XVQVKG32VB0D1SAHCKLIS1VQQBDHUDHCA43WMNJ04VMY';
 var clientSecret = 'F1EIWBO14JZDDY3QSY5MOAE3FJYJ0ID43FSJNAIM1MRDUOH2';
-var latLng = marker.location.lat + "," + marker.location.lng
+var latLng = marker.location.lat + "," + marker.location.lng;
 var url = "https://api.foursquare.com/v2/venues/search?limit=1&v=20170413" +
     "&ll=" + latLng +
     "&client_id=" + clientId +
@@ -116,7 +116,7 @@ infoWindow.setContent(
 marker.setAnimation(google.maps.Animation.BOUNCE);
 setTimeout(function() {
 marker.setAnimation(null);
-}, 2100);
+}, 3000);
 
 infoWindow.open(map, marker);
 // Make sure the marker property is cleared if the infoWindow is closed.
@@ -134,7 +134,7 @@ infoWindow.addListener('closeclick',function(){
         timeout: 3000,
         success: function(data) {
             $.each(data, function() {
-                var fsq = data.response.venues[0]
+                var fsq = data.response.venues[0];
                 var address = fsq.location.formattedAddress[0] || 'Address was not provided';
                 var cityState = fsq.location.formattedAddress[1] || 'City/State was not Provided';
                 var phone = fsq.contact.formattedPhone || 'A Phone # was not provided';
