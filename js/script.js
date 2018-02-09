@@ -157,7 +157,7 @@ infoWindow.addListener('closeclick',function(){
 //used to search for marker and return it. search is based upon finding the id
 function findMarker(id) {
 
-    for(var i=0; i < vm.markers.length; i++) {
+    for (var i=0; i < vm.markers.length; i++) {
         if (vm.markers[i].id == id) {
             return vm.markers[i];
         }
