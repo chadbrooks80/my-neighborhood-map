@@ -14,7 +14,7 @@ function initMap() {
     //create new markers and place into observable array
     for(var i=0; i < data.length; i++) {
 
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             map: map,
             location: data[i].location,
             title: data[i].title,
@@ -38,7 +38,7 @@ function initMap() {
 }
 
 //view model for ko
-vm = {
+var vm = {
     self: this,
     //when set to true, the side menu bar is displayed
     maxSideBar: ko.observable(true),
@@ -51,7 +51,7 @@ vm = {
     //this is used when user clicks on one of the listings to show info window
     displayInfoWindow: function() {
         //first finds the marker from the marker data.
-        marker = findMarker(this.id)
+        var marker = findMarker(this.id)
         showInfoWindow(marker, largeInfoWindow)
     },
     //this function is used for someone clicking on the expand or collaps button for
@@ -68,10 +68,10 @@ vm = {
 //closed javascript function used to filter results.
 vm.filterResults =  function(data) {
     return ko.computed(function() {
-        id = data.id
-        title = data.title.toLowerCase()
-        filter = vm.filter().toLowerCase()
-        marker = findMarker(data.id);
+        var id = data.id
+        var title = data.title.toLowerCase()
+        var filter = vm.filter().toLowerCase()
+        var marker = findMarker(data.id);
 
         //when the map is still loading it may not find the marker right away
         //this will test that and just set to true until the markers are all loaded
@@ -103,7 +103,7 @@ function showInfoWindow(marker, infoWindow) {
 var clientId = 'UVH2XVQVKG32VB0D1SAHCKLIS1VQQBDHUDHCA43WMNJ04VMY';
 var clientSecret = 'F1EIWBO14JZDDY3QSY5MOAE3FJYJ0ID43FSJNAIM1MRDUOH2';
 var latLng = marker.location.lat + "," + marker.location.lng
-url = "https://api.foursquare.com/v2/venues/search?limit=1&v=20170413" +
+var url = "https://api.foursquare.com/v2/venues/search?limit=1&v=20170413" +
     "&ll=" + latLng +
     "&client_id=" + clientId +
     "&client_secret=" + clientSecret;
@@ -133,9 +133,8 @@ infoWindow.addListener('closeclick',function(){
         dataType: "json",
         timeout: 3000,
         success: function(data) {
-            x = data;
             $.each(data, function() {
-                fsq = data.response.venues[0]
+                var fsq = data.response.venues[0]
                 var address = fsq.location.formattedAddress[0] || 'Address was not provided';
                 var cityState = fsq.location.formattedAddress[1] || 'City/State was not Provided';
                 var phone = fsq.contact.formattedPhone || 'A Phone # was not provided';
