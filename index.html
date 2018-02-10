@@ -1,22 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Kalam|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kalam%7CSource+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     <!-- this is defaulted to not display, this is the colapsed view of menu -->
     <div id="sdbarColapsed" data-bind="style: {display: maxSideBar() ? 'none' : 'block'}">
-            <img class="toggle" src="img/button.png" data-bind="click: $root.sidebarToggle">
+            <img class="toggle" alt="toggle-button" src="img/button.png" data-bind="click: $root.sidebarToggle">
     </div>
 
     <!-- this is defaulted to display, this is the expanded view of menu -->
     <div id="sdbarOpened" data-bind="style: {display: maxSideBar() ? 'block' : 'none'}">
-        <span id="powered">Powered by Google Maps and Foursqare</span>
-        <div><img class="toggle" id="opened-img" src="img/button.png" data-bind="click: $root.sidebarToggle"></div>
+        <span id="powered">Powered by Google Maps and Foursquare</span>
+        <div><img class="toggle" alt="toggle-button" id="opened-img" src="img/button.png" data-bind="click: $root.sidebarToggle"></div>
         <div><input type="text" name="filter" data-bind="value: filter, valueUpdate: 'keyup'"
             placeholder="Refine your search here..." id="filter"></div>
 
@@ -36,10 +37,10 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="js/knockout-3.4.2.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf640kSXMGRhL3UjZ0Lz2JudvoCPA5ubw&libraries=places&callback=initMap" onerror="mapError()">
     </script>
-    <script src="js/data.js"></script>
-    <script src="js/script.js"></script>
 </body>
 </html>

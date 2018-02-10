@@ -49,7 +49,7 @@ ul li {
 }
 
 img.toggle {
-  width: 50;
+  width: 50px;
 }
 
 input {
@@ -85,7 +85,6 @@ hr {
   bottom:0px;
   height: 100%;
   width: 100%;
-  /* left: 100px; */
   position: absolute;
   right: 0px;
 }

@@ -107,7 +107,7 @@ var url = "https://api.foursquare.com/v2/venues/search?limit=1&v=20170413" +
     "&ll=" + latLng +
     "&client_id=" + clientId +
     "&client_secret=" + clientSecret;
-    infoWindow.marker = marker;
+infoWindow.marker = marker;
 infoWindow.setContent(
     '<div>' + marker.title + '</div>'
 );
@@ -115,8 +115,8 @@ infoWindow.setContent(
 //make marker bounce
 marker.setAnimation(google.maps.Animation.BOUNCE);
 setTimeout(function() {
-marker.setAnimation(null);
-}, 3000);
+    marker.setAnimation(null);
+}, 1400);
 
 infoWindow.open(map, marker);
 // Make sure the marker property is cleared if the infoWindow is closed.
